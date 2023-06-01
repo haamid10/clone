@@ -1,14 +1,13 @@
-import {useState} from 'react'
+// import {useState} from 'react'
 
-function Search({search}) {
-  const [input , setInput] = useState()
+function Search({search, fetching}) {
  
   return (
     <div className="search-section">
       Search for your favorite shows
       <div classNameName="search-input">
-        <input className="search-box" type="text" placeholder="Search" onChange={(e)=> setInput(e.target.value)}   />
-        <button className="btn-search"  onClick={()=> search(input)}  >Search</button>
+      <input className="search-box" type="text" placeholder="Search" onChange={search}   />
+        <button className="btn-search"  onClick={fetching}  >Search</button>
       </div>
     </div>
   );

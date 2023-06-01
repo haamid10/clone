@@ -2,49 +2,35 @@ import Header from "./Components/Header";
 import Search from "./Components/Search";
 import MovieCard from "./Components/MovieCard";
 import { useState } from "react";
+import axios from "axios";
 function App() {
   const [result, setResult] = useState([])
   const [input, setInput] = useState([])
 
 
   const searchF = (value) => {
-    setInput(value)
+    setInput(value.target.value)
+  }
+  const fetching = () => {
+    axios.get(`https://api.tvmaze.com/search/shows?q=${input}`)
+    .then((res) => { setResult(res.data)})
   }
 
-   fetch(`https://api.tvmaze.com/search/shows?q=${input}`)
-   .then((response) =>{
-    return response.json()
-  }).then((data) => {
-    const result = data.map(item => item.show)
-    setResult(result)
-   
-  })
-  .catch((error)=> {console.log(error.message)
-  })
-
-   // eslint-disable-next-line no-undef
-  
-   if(!result){
-    return <div>Loading................</div>
-   }
-
-
-  // console.log(result)
-  
+    // console.log(result)
+  if(!result){
+    console.log('math is not mathing')
+  }
  return (
   <>
-  {!result ? <h1>Loading....</h1> : <div classNameName="App">
+  <div classNameName="App">
    <Header />
    <div className="main">
-    <Search  search={searchF}/>
+    <Search fetching={fetching}  search={searchF}/>
     <div className="movies-section">
-     {/* <!-- one card --> */}
-     {result.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
-     {/* <MovieCard  search={searchF}/> */}
-     {/* <!-- one card --> */}
+     {result.map((movie) => <MovieCard key={movie.id} movies={movie} />)}
     </div>
    </div>
-  </div> }
+  </div> 
   </>
  
  );

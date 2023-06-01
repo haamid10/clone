@@ -1,25 +1,25 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "../index.css";
-function MovieCard({movie}) {
+function MovieCard({movies}) {
   // const [ movie, setMovie] = useState(search)
 
-  console.log(movie)
+  console.log(movies)
  return (
   <div className="movie-card">
    <div className="movie-image">
-    <img
-     src={movie.image.medium}
-     alt={movie.name}
-    />
-   </div>
+   <h3 className=" text-white text-3xl">{movies.name} faarx</h3>
 
-   <h3 className="movie-heading">{movie.name}</h3>
-   <ul className="list">
-    <li>{movie.genres[0]}</li>
-    <li>{movie.genres[1]}</li>
-    <li></li>
-   </ul>
-   <a href={movie.officialSite}>Watch now</a>
+    {/* <img
+     src={movie.image}
+     alt={movie.name}
+    /> */}
+    {movies.name}
+    {/* <img src={movie.image.medium} alt={movie.name} /> */}
+    <h2>{movies.language}</h2>
+   </div>
+    
+  
+   <a href={movies.officialSite}>Watch now</a>
   </div>
  );
 }
